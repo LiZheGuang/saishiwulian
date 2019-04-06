@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>赛博物联</title>
+		<link rel="stylesheet" href="css/layui.css">
+		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<!-- 头部 -->
+		<div class="net-head">
+			<ul class="layui-nav net-head-nav" lay-filter="">
+				<li class="layui-nav-item L">
+					<a href="index.html">
+						工业信息物联系统领航者
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="index.html">
+						首页
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="关于赛博.html">
+						关于赛博
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="我的设备.html">
+						控制台
+					</a>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">15558813180</a>
+					<dl class="layui-nav-child">
+						<dd><a href="用户中心">个人中心</a></dd>
+						<dd><a href="javascript:;">退出</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">中文/EN</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:;">中文</a></dd>
+						<dd><a href="javascript:;">English</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="net-L">
+			<div class="net-logo">
+				<img src="images/logo.png" />
+			</div>
+			<div class="net-nav" id="net-nav">
+				<ul class="layui-nav layui-nav-tree net-nav-tree" lay-filter="test">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe78b;
+							</i>
+							总览
+						</a>
+					</li>
+					<li class="layui-nav-item layui-nav-itemed">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe624;
+							</i>
+							设备管理
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="我的设备.html" class="net-nav-active">
+									我的设备
+								</a>
+							</dd>
+							<dd>
+								<a href="添加设备.html">
+									添加设备
+								</a>
+							</dd>
+							<dd>
+								<a href="新建节点.html">
+									新建节点
+								</a>
+							</dd>
+							<dd>
+								<a href="节点列表.html">
+									节点列表
+								</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="触发器.html">
+							<i class="icon">
+								&#xe61e;
+							</i>
+							触发器
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="数据下载.html">
+							<i class="icon">
+								&#xe659;
+							</i>
+							数据下载
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="用户中心.html">
+							<i class="icon">
+								&#xe9a4;
+							</i>
+							用户中心
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="net-L-txt">
+				cpsiot.net
+			</div>
+		</div>
+		
+		<!-- 内容区 -->
+		<div class="net-R">
+			<div class="net-con" id="net-con">
+				<div class="net-con-head">
+					<div class="L">
+						<a href="添加设备.html" class="layui-btn layui-btn-danger">
+							添加设备
+						</a>
+						<a href="触发器.html" class="layui-btn layui-btn-danger">
+							新建触发器
+						</a>
+						<button class="layui-btn layui-btn-danger">
+							新建分组
+						</button>
+					</div>
+					<div class="R">
+						<form class="layui-form proj-titleForm" action="proj-titleForm">
+							<div class="net-con-headI">
+								<input type="text" name="title" placeholder="设备名称/类型" class="layui-input">
+								<a href=
+								"javascript:;" class="layui-icon layui-icon-search net-con-headSe">
+								
+								</a> 
+							</div>
+							<div class="net-con-headS">
+								<select class="proj-titleSelect" name="interest" lay-filter="required" lay-search="">
+									<option value="">15558813180</option>
+									<option value="0">15558813181</option>
+									<option value="1">15558813182</option>
+									<option value="2">15558813183</option>
+								</select>
+							</div>
+						</form>
+					</div>					
+				</div>
+				<table class="net-tab">
+					<thead>
+						<tr>
+							<td>3/6台</td>
+							<td>名称</td>
+							<td>状态</td>
+							<td>设备概况</td>
+							<td>编辑自定义标签</td>
+							<td>最后更新</td>
+							<td>实时曲线</td>
+							<td>历史数据</td>
+							<td>更多操作</td>
+						</tr>
+					</thead>
+					<tbody class="net-tab-group">
+						<tr>
+							<td colspan="9">
+								<a href="javascript:;" class="icon net-tab-icon net-tab-down net-tab-up">
+									&#xe600;
+								</a>
+								<span class="net-tab-name" name="深圳区第一组">
+									深圳区第一组
+								</span>
+								<a href="javascript:;" class="icon net-tab-icon net-tab-addname">
+									&#xe724;
+								</a>
+								<a href="javascript:;" class="icon net-tab-icon net-tab-del">
+									&#xe630;
+								</a>
+							</td>
+						</tr>
+					</tbody>	
+					<tbody class="net-tab-son" id="zu0001"><!-- 组ID-->
+						<tr>
+							<td>
+								<img src="images/AVI图标.png" class="net-tab-img" />
+							</td>
+							<td>
+								<a href="编辑设备.html" class="net-tabA">
+								温湿度控制XMTD 2202
+								</a>
+							</td>
+							<td>
+								<img src="images/LX.png" class="net-tab-stateIco" />
+							</td>
+							<td>
+								12℃
+							</td>
+							<td>
+								<a href="javascript:;" class="net-tab-custom" name="编辑自定义标签">
+									编辑自定义标签
+								</a>
+							</td>
+							<td>
+								1秒前
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-realTime" sid="0001" cid="123">
+									&#xe625;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-History">
+									&#xe62c;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="net-td-set">
+									设置
+									<i class="icon">&#xe600;</i>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="images/AVI图标.png" class="net-tab-img" />
+							</td>
+							<td>
+								<a href="编辑设备.html" class="net-tabA">
+									温湿度控制XMTD 2203
+								</a>
+							</td>
+							<td>
+								<img src="images/ZX.png" class="net-tab-stateIco" />
+							</td>
+							<td>
+								12℃
+							</td>
+							<td>
+								<a href="javascript:;" class="net-tab-custom" name="编辑自定义标签">
+									编辑自定义标签
+								</a>
+							</td>
+							<td>
+								1秒前
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-realTime" sid="0002" cid="1234">
+									&#xe625;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-History">
+									&#xe62c;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="net-td-set">
+									设置
+									<i class="icon">&#xe600;</i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+					<tbody class="net-tab-group">
+						<tr>
+							<td colspan="9">
+								<a href="javascript:;" class="icon net-tab-icon net-tab-down net-tab-up">
+									&#xe600;
+								</a>
+								<span class="net-tab-name" name="深圳区第一组">
+									深圳区第二组
+								</span>
+								<a href="javascript:;" class="icon net-tab-icon net-tab-addname">
+									&#xe724;
+								</a>
+								<a href="javascript:;" class="icon net-tab-icon net-tab-del">
+									&#xe630;
+								</a>
+							</td>
+						</tr>
+					</tbody>
+					<tbody class="net-tab-son" id="zu0002"><!-- 组ID-->
+						<tr>
+							<td>
+								<img src="images/AVI图标.png" class="net-tab-img" />
+							</td>
+							<td>
+								<a href="编辑设备.html" class="net-tabA">
+									温湿度控制XMTD 2205
+								</a>
+							</td>
+							<td>
+								<img src="images/LX.png" class="net-tab-stateIco" />
+							</td>
+							<td>
+								12℃
+							</td>
+							<td>
+								<a href="javascript:;" class="net-tab-custom" name="编辑自定义标签">
+									编辑自定义标签
+								</a>
+							</td>
+							<td>
+								1秒前
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-realTime" sid="0001" cid="123">
+									&#xe625;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-History">
+									&#xe62c;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="net-td-set">
+									设置
+									<i class="icon">&#xe600;</i>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="images/AVI图标.png" class="net-tab-img" />
+							</td>
+							<td>
+								<a href="编辑设备.html" class="net-tabA">
+									温湿度控制XMTD 2207
+								</a>
+							</td>
+							<td>
+								<img src="images/ZX.png" class="net-tab-stateIco" />
+							</td>
+							<td>
+								12℃
+							</td>
+							<td>
+								<a href="javascript:;" class="net-tab-custom" name="编辑自定义标签">
+									编辑自定义标签
+								</a>
+							</td>
+							<td>
+								1秒前
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-realTime" sid="0002" cid="1234">
+									&#xe625;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="icon net-td-icon net-td-History">
+									&#xe62c;
+								</a>
+							</td>
+							<td>
+								<a href="javascript:;" class="net-td-set">
+									设置
+									<i class="icon">&#xe600;</i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="net-page" id="net-page">
+					
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="js/highcharts.js"></script>
+		<script src="layui.js"></script>
+		<script src="js/index.js"></script>
+		<script>
+		
+		</script>
+	</body>
+</html> 

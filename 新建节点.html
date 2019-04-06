@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>赛博物联</title>
+		<link rel="stylesheet" href="css/layui.css">
+		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<!-- 头部 -->
+		<div class="net-head">
+			<ul class="layui-nav net-head-nav" lay-filter="">
+				<li class="layui-nav-item L">
+					<a href="index.html">
+						工业信息物联系统领航者
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="index.html">
+						首页
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="关于赛博.html">
+						关于赛博
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="我的设备.html">
+						控制台
+					</a>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">15558813180</a>
+					<dl class="layui-nav-child">
+						<dd><a href="用户中心">个人中心</a></dd>
+						<dd><a href="javascript:;">退出</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">中文/EN</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:;">中文</a></dd>
+						<dd><a href="javascript:;">English</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="net-L">
+			<div class="net-logo">
+				<img src="images/logo.png" />
+			</div>
+			<div class="net-nav" id="net-nav">
+				<ul class="layui-nav layui-nav-tree net-nav-tree" lay-filter="test">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe78b;
+							</i>
+							总览
+						</a>
+					</li>
+					<li class="layui-nav-item layui-nav-itemed">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe624;
+							</i>
+							设备管理
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="我的设备.html">
+									我的设备
+								</a>
+							</dd>
+							<dd>
+								<a href="添加设备.html">
+									添加设备
+								</a>
+							</dd>
+							<dd>
+								<a href="新建节点.html" class="net-nav-active">
+									新建节点
+								</a>
+							</dd>
+							<dd>
+								<a href="节点列表.html">
+									节点列表
+								</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="触发器.html">
+							<i class="icon">
+								&#xe61e;
+							</i>
+							触发器
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="数据下载.html">
+							<i class="icon">
+								&#xe659;
+							</i>
+							数据下载
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="用户中心.html">
+							<i class="icon">
+								&#xe9a4;
+							</i>
+							用户中心
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="net-L-txt">
+				cpsiot.net
+			</div>
+		</div>
+		
+		<!-- 内容区 -->
+		<div class="net-R">
+			<div class="net-con" id="net-con">
+				<div class="net-con-head net-con-headB">
+					<div class="L">
+						编辑设备
+					</div>				
+				</div>
+				<div class="net-itme">
+					<div class="layui-form net-form">
+						<div class="net-form-list">
+							<div class="net-form-name">
+								输入框
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-in">
+									<input type="text" name="title" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								图片上传
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-in">
+									<a href="javascript:;" class="a-upload">
+										<input type="file" name="" id="">
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								下拉框
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-in">
+									<select class="proj-titleSelect" name="interest" lay-filter="required" lay-search="">
+										<option value=""></option>
+										<option value="0">下拉1</option>
+										<option value="1">下拉2</option>
+										<option value="2">下拉3</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								日期选择
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-in">
+									<input type="text" name="title" placeholder="选择日期" id="data" class="layui-input" readonly>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								上报周期
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-in">
+									<div class="net-form-inline">
+										<input type="radio" lay-filter="cycle" name="sex" value="0" title="自定义">
+									</div>
+									<div class="net-form-inline">
+										<input type="radio" lay-filter="cycle" name="sex" value="1" title="推荐值" checked>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								<!-- 上报周期选择 -->
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-none" id="custom">
+									<div class="net-form-in">
+										<input type="text" name="title" class="layui-input">
+									</div>
+								</div>
+								<div class="net-form-none net-form-block" id="Recommend">
+									<div class="net-form-in">
+										<select class="proj-titleSelect" name="interest" lay-filter="required" lay-search="">
+											<option value=""></option>
+											<option value="0">下拉1</option>
+											<option value="1">下拉2</option>
+											<option value="2">下拉3</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								数据节点
+							</div>
+							<div class="net-form-itme">
+								<a href="javascript:;" class="net-form-add" id="addNode">
+									添加
+								</a>
+								<a href="javascript:;" class="net-form-add" id="batchAddNode">
+									批量添加
+								</a>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								<!-- 批量添加数据节点位置 -->
+							</div>
+							<div class="net-form-div">
+								<div class="net-form-tab" id="ReceiveNode">
+									<div class="net-form-tr">
+										<div class="net-form-td">
+											<input type="text" name="title" class="layui-input">
+										</div>
+										<div class="net-form-td">
+											<select class="proj-titleSelect" name="interest" lay-filter="required" lay-search="">
+											<option value=""></option>
+											<option value="0">下拉1</option>
+											<option value="1">下拉2</option>
+											<option value="2">下拉3</option>
+										</select>
+										</div>
+										<div class="net-form-td">
+											<select class="proj-titleSelect" name="interest" lay-filter="required" lay-search="">
+											<option value=""></option>
+											<option value="0">下拉1</option>
+											<option value="1">下拉2</option>
+											<option value="2">下拉3</option>
+										</select>
+										</div>
+										<div class="net-form-td">
+											<input type="text" name="title" class="layui-input">
+										</div>
+										<div class="net-form-td">
+											<input type="text" name="title" class="layui-input">
+										</div>
+										<div class="net-form-td">
+											<img src="images/DOC图标.png" class="net-form-img">
+										</div>
+										<div class="net-form-td">
+											<a href="javascript:;" class="net-form-a">
+												删除
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								搜索位置
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-in">
+									<input type="text" name="title" class="layui-input" placeholder="输入经纬度搜索">
+									<a href="javascript:;" class="layui-icon layui-icon-search net-con-headSe">
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								地图
+							</div>
+							<div class="net-form-itme">
+								<div class="net-form-mapTxt">
+									在地图中点击显示经纬度。或输入<span>纬度,经度</span>或<span>地名</span>后查询位置。
+								</div>
+								<div class="net-form-map">
+									这里放地图
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-form-name">
+								<!-- 保存 按钮 -->
+							</div>
+							<div class="net-form-itme">
+								<a href="javascript:;" class="net-form-add">
+									创建设备
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="js/highcharts.js"></script>
+		<script src="layui.js"></script>
+		<script src="js/index.js"></script>
+		<script>
+		
+		</script>
+	</body>
+</html> 

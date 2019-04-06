@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>赛博物联</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<link rel="stylesheet" href="bower_components/gridstack/dist/gridstack.css" />
+	<link rel="stylesheet" href="css/layui.css">
+	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/records.css">
+	
+</head>
+
+<body>
+	<div id="app" v-cloak>
+		<!-- 头部 -->
+		<div class="net-head">
+			<ul class="layui-nav net-head-nav" lay-filter="">
+				<li class="layui-nav-item L">
+					<a href="index.html">
+						工业信息物联系统领航者
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="index.html">
+						首页
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="关于赛博.html">
+						关于赛博
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="我的设备.html">
+						控制台
+					</a>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">15558813180</a>
+					<dl class="layui-nav-child">
+						<dd><a href="用户中心">个人中心</a></dd>
+						<dd><a href="javascript:;">退出</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">中文/EN</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:;">中文</a></dd>
+						<dd><a href="javascript:;">English</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="net-L">
+			<div class="net-logo">
+				<img src="images/logo.png" />
+			</div>
+			<div class="net-nav" id="net-nav">
+				<ul class="layui-nav layui-nav-tree net-nav-tree" lay-filter="test">
+					<li class="layui-nav-item layui-nav-itemed">
+						<a href=" javascript:;">
+							<i class="icon">
+								&#xe78b;
+							</i>
+							数据中心
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="records.html" class="net-nav-active">
+									仪表盘列表
+								</a>
+							</dd>
+						</dl>
+
+					</li>
+					<li class="layui-nav-item ">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe624;
+							</i>
+							设备管理
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="我的设备.html">
+									我的设备
+								</a>
+							</dd>
+							<dd>
+								<a href="添加设备.html">
+									添加设备
+								</a>
+							</dd>
+							<dd>
+								<a href="新建节点.html">
+									新建节点
+								</a>
+							</dd>
+							<dd>
+								<a href="节点列表.html">
+									节点列表
+								</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="触发器.html">
+							<i class="icon">
+								&#xe61e;
+							</i>
+							触发器
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="数据下载.html">
+							<i class="icon">
+								&#xe659;
+							</i>
+							数据下载
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="用户中心.html">
+							<i class="icon">
+								&#xe9a4;
+							</i>
+							用户中心
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="net-L-txt">
+				cpsiot.net
+			</div>
+		</div>
+
+		<!-- 内容区 -->
+		<div class="net-R">
+
+			<!-- nav江南 -->
+			<div class="nav_netR">
+				<div class="nav_netR_title">
+					<div class="home">
+						<img src="/images/home.png" alt="wo">
+					</div>
+					<div class="nav_netR_title_tab">
+						<div class="">江南数控厂</div>
+						<img src="/images/setting.png" alt="">
+					</div>
+				</div>
+				<div class="ul_leftNav">
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+						<li class="layui-nav-item" @click="clickShowMask"><a href="javascript:;">添加组件</a></li>
+						<li class="layui-nav-item"><a href="javascript:;">保存</a></li>
+						<li class="layui-nav-item"><a href="javascript:;">设为首页</a></li>
+					</ul>
+				</div>
+
+				<!-- 组件遮罩 -->
+				<div class="records_mask" v-if="ifMaskShow">
+					<div class="records_mask_title">
+						<div class="records_mask_title_l">添加组件</div>
+						<div class="records_mask_title_r cursorPointer" @click="clickHideMask">关闭</div>
+					</div>
+					<div class="layui-row layui-row-mask-bottom layui-col-space10">
+						<div class="laberl">基本组件</div>
+
+						<div class="layui-col-md3 records_mask_item" v-for="(item,index) of elementData">
+							<div class="records_mask_item_box" @click="clickPushCom(item.type)">
+								<div class="records_mask_item_box_l">
+									{{item.name}}
+								</div>
+								<div class="records_mask_item_box_r"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="layui-row layui-row-mask-bottom layui-col-space10">
+						<div class="laberl">图表组件</div>
+						<div class="layui-col-md3 records_mask_item" v-for="(item,index) of chartData">
+							<div class="records_mask_item_box">
+								<div class="records_mask_item_box_l">
+									{{item.name}}
+								</div>
+								<div class="records_mask_item_box_r"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 组件遮罩 -->
+				<!-- 拖拽布局 -->
+				<div class="grid-stack" id="gridJqury">
+					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8">
+						<div class="grid-stack-item-content">
+							<div class="switchingBox">
+								<div class="switchingBox_title">1#电动机</div>
+								<div class="switchCode">
+									<div class="solidSwitch"></div>
+									<div class="switchCodeMsg">NO</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="2" data-gs-height="8">
+						<div class="grid-stack-item-content">
+							<div id="container"></div>
+						</div>
+					</div>
+				</div>
+				<!-- 拖拽布局 -->
+
+
+			</div>
+			<!-- nav江南 -->
+		</div>
+
+
+	</div>
+
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="http://libs.baidu.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="bower_components/lodash/dist/lodash.min.js"></script>
+	<script src="bower_components/gridstack/dist/gridstack.js"></script>
+	<script src="bower_components/gridstack/dist/gridstack.jQueryUI.min.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="layui.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/confgiSetting.js"></script>
+
+	<script>
+		window.onload = function () {
+			new Vue({
+				el: '#app',
+				data: {
+					ifMaskShow: false,
+					// 基本组件
+					elementData: [{
+						name: "开关型",
+						type: "switching"
+					}, {
+						name: "数值型",
+						type: "number"
+					}, {
+						name: "复合型",
+						type: "recombination"
+					}],
+					// 图表组件
+					chartData: [{
+						name: "折线图",
+					}, {
+						name: "柱状图",
+					}, {
+						name: "饼状图",
+					}, {
+						name: "伏压表",
+					}, {
+						name: "半圆仪表",
+					}, {
+						name: "时钟",
+					}, {
+						name: "子弹图",
+					},
+					{
+						name: "表格",
+					}]
+				},
+				created: function () {
+					console.log('a is: ' + this.a)
+				},
+				mounted() {
+					this.onlGridstack()
+				
+				},
+				methods: {
+					clickHideMask() {
+						this.ifMaskShow = false
+					},
+					clickShowMask() {
+						this.ifMaskShow = true
+					},
+					// 拖拽
+					onlGridstack() {
+						var options = {
+							cellHeight: 10,
+							verticalMargin: 10,
+							float: true,
+							always_show_resize_handle: false,
+							disableResize: false
+						};
+						console.log('1')
+						$('.grid-stack').gridstack(options);
+					},
+					// 添加组件事件
+					clickPushCom(type) {
+						if (type === 'switching') {
+							new function () {
+								this.items = [
+									{ x: 0, y: 0, width: 2, height: 2 },
+									{ x: 3, y: 1, width: 1, height: 2 },
+									{ x: 4, y: 1, width: 1, height: 1 },
+									{ x: 2, y: 3, width: 3, height: 1 },
+									{ x: 2, y: 5, width: 1, height: 1 }
+								];
+
+								this.grid = $('.grid-stack').data('gridstack');
+
+								this.add_new_widget = function () {
+									var node = {
+										x: 12 * Math.random(),
+										y: 5 * Math.random(),
+										width: 4,
+										height: 8
+									};
+									this.grid.add_widget($(`<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8">${seeting.switch}</div>`),
+										node.x, node.y, node.width, node.height);
+								}.bind(this);
+
+								this.add_new_widget()
+							};
+							
+						}
+
+					}
+				},
+			})
+		}
+
+	</script>
+</body>
+
+</html>

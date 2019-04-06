@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>赛博物联</title>
+		<link rel="stylesheet" href="css/layui.css">
+		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<!-- 头部 -->
+		<div class="net-head">
+			<ul class="layui-nav net-head-nav" lay-filter="">
+				<li class="layui-nav-item L">
+					<a href="index.html">
+						工业信息物联系统领航者
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="index.html">
+						首页
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="关于赛博.html">
+						关于赛博
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="我的设备.html">
+						控制台
+					</a>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">15558813180</a>
+					<dl class="layui-nav-child">
+						<dd><a href="用户中心">个人中心</a></dd>
+						<dd><a href="javascript:;">退出</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item net-head-LB">
+					<a href="javascript:;">中文/EN</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:;">中文</a></dd>
+						<dd><a href="javascript:;">English</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="net-L">
+			<div class="net-logo">
+				<img src="images/logo.png" />
+			</div>
+			<div class="net-nav" id="net-nav">
+				<ul class="layui-nav layui-nav-tree net-nav-tree" lay-filter="test">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe78b;
+							</i>
+							总览
+						</a>
+					</li>
+					<li class="layui-nav-item layui-nav-itemed">
+						<a href="javascript:;">
+							<i class="icon">
+								&#xe624;
+							</i>
+							设备管理
+						</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="我的设备.html">
+									我的设备
+								</a>
+							</dd>
+							<dd>
+								<a href="添加设备.html">
+									添加设备
+								</a>
+							</dd>
+							<dd>
+								<a href="新建节点.html">
+									新建节点
+								</a>
+							</dd>
+							<dd>
+								<a href="节点列表.html" class="net-nav-active">
+									节点列表
+								</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="触发器.html">
+							<i class="icon">
+								&#xe61e;
+							</i>
+							触发器
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="数据下载.html">
+							<i class="icon">
+								&#xe659;
+							</i>
+							数据下载
+						</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="用户中心.html">
+							<i class="icon">
+								&#xe9a4;
+							</i>
+							用户中心
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="net-L-txt">
+				cpsiot.net
+			</div>
+		</div>
+		
+		<!-- 内容区 -->
+		<div class="net-R">
+			<div class="net-con" id="net-con">
+				<div class="net-con-head net-con-headB">
+					<div class="L">
+						设置连接
+					</div>				
+				</div>
+				<div class="net-itme">
+					<div class="layui-form net-form">
+						<div class="net-form-list">
+							<div class="net-linkName">
+								第一步:
+							</div>
+							<div class="net-linkList">
+								选择协议&nbsp;&nbsp;
+								<div class="net-form-in">
+									<select class="proj-titleSelect" name="interest" lay-filter="xieyi" lay-search="">
+										<option value="0">TCP协议</option>
+										<option value="1">MB RTU</option>
+										<option value="2">MQTT协议</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="net-form-list">
+							<div class="net-linkName">
+								第二步:
+							</div>
+							<div class="net-linkList">
+								编辑节点信息
+							</div>
+						</div>
+						<div class="net-linkDiv">
+							<div class="net-linkDiv-name">
+								设备信息
+							</div>
+							<div class="net-link-details">
+								<div class="net-linkDiv-img">
+									<img src="images/AVI图标.png" />
+								</div>
+								<div class="net-details-itme">
+									<div class="net-details-name">
+										温控仪
+									</div>
+									<div class="net-details-li">
+										IP:192.168.1.110
+									</div>
+									<div class="net-details-li">
+										端口:8647
+									</div>
+									<div class="net-details-li">
+										序列号:Z5QH6H31OP18874J
+									</div>
+									<div class="net-details-but">
+										<a href="javascript:;">
+											重新获取
+										</a>
+										<a href="新建节点.html">
+											编辑
+										</a>
+										<a href="javascript:;">
+											复制序列号
+										</a>
+										<a href="javascript:;" class="ReceiveInstruction">
+											接受指令
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- TCP协议 -->
+						<div class="net-link net-linkShow" id="net-linkTCP">
+							<div class="net-linkDiv">
+								<div class="layui-tab layui-tab-brief">
+									<ul class="layui-tab-title">
+										<li class="layui-this">自定义协议标签</li>
+										<li>所有传感器</li>
+									</ul>
+									<div class="layui-tab-content net-Agreement-content">
+										<div class="layui-tab-item layui-show">
+											<div class="net-Agreement">
+												<div class="update-Agreement">
+													<div class="update-Agreement-name">
+														协议标签:
+													</div>
+													<div class="update-Agreement-con">
+														[H:21]&nbsp;&nbsp;[HE:2]&nbsp;&nbsp;[S:2]&nbsp;&nbsp;[SN[2]]&nbsp;&nbsp;[STR?]&nbsp;&nbsp;[DE[2]|AB]&nbsp;&nbsp;[D[2]]&nbsp;&nbsp;[DE[3]|ABC]&nbsp;&nbsp;[D?]&nbsp;&nbsp;[CRC8]
+													</div>
+												</div>
+												<div class="update-Agreement">
+													<div class="update-Agreement-con">
+														<a href="javascript:;" class="update-Agreement-a" id="Agreement-edit">
+															编辑协议
+														</a>
+													</div>
+												</div>
+												<div class="update-Agreement">
+													<div class="update-Agreement-con" id="Agreement-Receive">
+														<span class="span-Agreement">
+															[H:
+															<input type="text" name="title" class="input-Agreement">
+															]
+															<a href="javascript:;" class="layui-icon icon-Agreement">
+																&#xe640;
+															</a>
+														</span>
+													</div>
+												</div>
+												<div class="update-Agreement">
+													<div class="update-Agreement-con">
+														<a href="javascript:;" class="update-Agreement-a">
+															保存协议
+														</a>
+													</div>
+												</div>
+											</div>
+											<div class="net-Agreement">
+												<div class="update-Agreement">
+													<div class="update-Agreement-name">
+														请选择协议:
+													</div>
+													<div class="update-Agreement-con">
+														<div class="net-form-in">
+															<select class="proj-titleSelect" name="interest" lay-filter="biaoqian" lay-search="">
+																<option value="0">修改协议</option>
+																<option value="1">已有协议</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="none-Agreement show-Agreement" id="xiugai-Agreement">
+													<div class="update-Agreement">
+														<div class="update-Agreement-name">
+															数据头标签:
+														</div>
+														<div class="update-Agreement-con">
+															<a href="javascript:;" class="add-Agreement" aid="1,H:">
+																[H:数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="1,HE:">
+																[HE:数据]
+															</a>
+														</div>
+													</div>
+													<div class="update-Agreement">
+														<div class="update-Agreement-name">
+															分隔符标签:
+														</div>
+														<div class="update-Agreement-con">
+															<a href="javascript:;" class="add-Agreement" aid="1,S:">
+																[S:数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="1,SE:">
+																[SE:数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="1,SN:">
+																[SN:长度]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="0,S?">
+																[S?]
+															</a>
+														</div>
+													</div>
+													<div class="update-Agreement">
+														<div class="update-Agreement-name">
+															数据标签:
+														</div>
+														<div class="update-Agreement-con">
+															<a href="javascript:;" class="add-Agreement" aid="0,D?">
+																[D?]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="0,STR?">
+																[STR?]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="1,D:">
+																[D:长度]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="2,DE:">
+																[DE[长度]|数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="2,DEC:">
+																[DEC[长度]|数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="2,DF:">
+																[DF[长度]|数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="2,DSF:">
+																[DSF[长度]|数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="0,GPS">
+																[GPS]
+															</a>
+															<a href="javascript:;" class="Padd-Agreement" id="Padd-Agreement">
+																批量添加
+															</a>
+														</div>
+													</div>
+													<div class="update-Agreement">
+														<div class="update-Agreement-name">
+															结束符标签:
+														</div>
+														<div class="update-Agreement-con">
+															<a href="javascript:;" class="add-Agreement" aid="1,T:">
+																[T:数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="1,TE:">
+																[TE:数据]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="0,CRC16">
+																[CRC16]
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="0,CRC8">
+																CRC8
+															</a>
+															<a href="javascript:;" class="add-Agreement" aid="0,TE:0D0A">
+																[回车换行]
+															</a>
+														</div>
+													</div>
+													<div class="update-Agreement">
+														<div class="update-Agreement-con">
+															(注：单击协议标签添加规则，<a href="javascript:;" class="net-tabA" id="xieyiguize">协议标签规则</a>。更改协议请重新添加协议标签)
+														</div>
+													</div>
+													<div class="update-Agreement">
+														<div class="layui-collapse">
+															<div class="layui-colla-item">
+																<h2 class="layui-colla-title">
+																	接收指令
+																</h2>
+																<div class="layui-colla-content layui-show">
+																	<div class="list-Agreement">
+																		<div class="net-form-in">
+																			<div class="net-form-inline">
+																				<input type="radio" lay-filter="zifuchuan" name="sex" value="0" title="字符串">
+																			</div>
+																			<div class="net-form-inline">
+																				<input type="radio" lay-filter="zifuchuan" name="sex" value="1" title="16进制" checked>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="list-Agreement">
+																		<textarea class="textarea-Agreement"></textarea>
+																	</div>
+																	<div class="list-Agreement">
+																		(显示设备发送给平台的数据，可以依据显示的数据添加协议)
+																	</div>
+																</div>
+															</div>
+															<div class="layui-colla-item">
+																<h2 class="layui-colla-title">
+																	发送指令
+																</h2>
+																<div class="layui-colla-content layui-show">
+																	<div class="list-Agreement">
+																		<div class="net-form-in">
+																			<div class="net-form-inline">
+																				<input type="radio" lay-filter="fasongfangshi" name="zhouqi" value="0" title="马上发送" checked>
+																			</div>
+																			<div class="net-form-inline">
+																				<input type="radio" lay-filter="fasongfangshi" name="zhouqi" value="1" title="周期发送">
+																			</div>
+																		</div>
+																		<div class="zhou-Agreement" id="zhou-Agreement">
+																			<input type="text" name="title" value="10" class="layui-input">
+																			<span>
+																				秒/次
+																			</span>
+																		</div>
+																	</div>
+																	<div class="list-Agreement">
+																		<div class="net-form-in">
+																			<div class="net-form-inline">
+																				<input type="radio" lay-filter="zifuchuan" name="zi" value="0" title="字符串">
+																			</div>
+																			<div class="net-form-inline">
+																				<input type="radio" lay-filter="zifuchuan" name="zi" value="1" title="16进制" checked>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="list-Agreement">
+																		<textarea class="textarea-Agreement"></textarea>
+																		<a href="javascript:;" class="fasong-Agreement">
+																			发送数据
+																		</a>
+																	</div>
+																	<div class="list-Agreement">
+																		(输入发送的指令，该指令由平台发送给设备，根据设备通讯协议输入对应的指令)
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="none-Agreement" id="yiyou-Agreement">
+													<div class="update-Agreement">
+														<div class="update-Agreement-name">
+															已有设备协议:
+														</div>
+														<div class="update-Agreement-con">
+															<div class="net-form-in">
+																<select class="proj-titleSelect" name="interest" lay-filter="biaoqian" lay-search="">
+																	<option value="0">设备1</option>
+																	<option value="1">设备2</option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="layui-tab-item">
+											<div class="layui-row">
+												<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
+													<div class="row-Agreement">
+														<div class="img-Agreement">
+															<img src="images/AVI图标.png" />
+														</div>
+														<div class="All-Agreement">
+															传感器1
+														</div>
+														<div class="All-Agreement">
+															<button class="layui-btn layui-btn-sm layui-btn-primary TCP-Write">
+																写入指令
+															</button>
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
+													<div class="row-Agreement">
+														<div class="img-Agreement">
+															<img src="images/AVI图标.png" />
+														</div>
+														<div class="All-Agreement">
+															传感器1
+														</div>
+														<div class="All-Agreement">
+															<button class="layui-btn layui-btn-sm layui-btn-primary TCP-Write">
+																写入指令
+															</button>
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
+													<div class="row-Agreement">
+														<div class="img-Agreement">
+															<img src="images/AVI图标.png" />
+														</div>
+														<div class="All-Agreement">
+															传感器1
+														</div>
+														<div class="All-Agreement">
+															<button class="layui-btn layui-btn-sm layui-btn-primary TCP-Write">
+																写入指令
+															</button>
+														</div>
+													</div>
+												</div>
+												<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
+													<div class="row-Agreement">
+														<div class="img-Agreement">
+															<img src="images/AVI图标.png" />
+														</div>
+														<div class="All-Agreement">
+															传感器1
+														</div>
+														<div class="All-Agreement">
+															<button class="layui-btn layui-btn-sm layui-btn-primary TCP-Write">
+																写入指令
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- MB RTU协议 -->
+						<div class="net-link" id="net-linkMB">
+							<div class="net-linkDiv">
+								<div class="layui-tab layui-tab-brief">
+									<ul class="layui-tab-title">
+										<li class="layui-this">所有传感器</li>
+										<button class="layui-btn layui-btn-sm layui-btn-primary R" id="PiMBRTU-Write">
+											批量添加
+										</button>
+									</ul>
+									<div class="layui-tab-content net-Agreement-content">
+										<div class="layui-tab-item layui-show">
+											<div class="layui-row">
+												<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
+													<div class="row-Agreement">
+														<div class="img-Agreement">
+															<img src="images/AVI图标.png" />
+														</div>
+														<div class="All-Agreement">
+															传感器1
+														</div>
+														<div class="All-Agreement">
+															<button class="layui-btn layui-btn-sm layui-btn-primary MBRTU-Write">
+																读写指令
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- MQTT协议 -->
+						<div class="net-link" id="net-linkMQTT">
+							<div class="net-linkDiv">
+								<div class="layui-tab layui-tab-brief">
+									<ul class="layui-tab-title">
+										<li class="layui-this">所有传感器</li>
+									</ul>
+									<div class="layui-tab-content net-Agreement-content">
+										<div class="layui-tab-item layui-show">
+											<div class="layui-row">
+												<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
+													<div class="row-Agreement">
+														<div class="img-Agreement">
+															<img src="images/AVI图标.png" />
+														</div>
+														<div class="All-Agreement">
+															传感器1
+														</div>
+														<div class="All-Agreement">
+															传感器ID:200027362
+														</div>
+														<div class="All-Agreement">
+															读写标识:
+															<input type="text" value="" name="title" >
+														</div>
+														<div class="All-Agreement">
+															<button class="layui-btn layui-btn-sm layui-btn-primary MQTT-Write">
+																写入指令
+															</button>
+														</div>
+														
+													</div>
+												</div>
+											</div>
+											<div class="Example-Agreement">
+												<div class="Example-Agreement-head">
+													链接协议-生成示例:
+													<div class="net-form-in">
+														<div class="net-form-inline">
+															<input type="checkbox" lay-filter="fasongfangshi" name="Example" value="0" title="ID" lay-skin="primary" checked>
+														</div>
+														<div class="net-form-inline">
+															<input type="checkbox" lay-filter="fasongfangshi" name="Example" lay-skin="primary" value="1" title="读写标识">
+														</div>
+														<div class="net-form-inline">
+															<input type="checkbox" lay-filter="fasongfangshi" name="Example" lay-skin="primary" value="1" title="上传时间">
+														</div>
+														<button class="layui-btn layui-btn-sm layui-btn-primary">
+															生成
+														</button>
+													</div>
+												</div>
+												<div class="Example-Agreement-con">
+													<textarea></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="js/highcharts.js"></script>
+		<script src="layui.js"></script>
+		<script src="js/index.js"></script>
+		<script>
+		
+		</script>
+	</body>
+</html> 
