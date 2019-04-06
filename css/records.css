@@ -136,25 +136,52 @@
     border-radius: 25px;
     position: relative;
     overflow: hidden;
+    margin-top: 10px;
+    cursor: pointer;
 }
-.switchCode{
+.switchIcon{
+    width: 56px;
+    height: 56px;
+    background: white;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    margin-top: -28px;
+    border-radius: 100%;
+    
+}
+.switchCodeYes{
     background: #70bf37;
-
+}
+.switchCodeNo{
+    background: #848484;
 }
 
 .solidSwitch{
     position: absolute;
+    left: 0;
     width: 30px;
     height: 31px;
     background: white;
     border-radius: 100%;
     
 }
+.solidSwitchNo{
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 31px;
+    background: white;
+    border-radius: 100%;
+}
 .switchCodeMsg{
     color: white;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     text-align: right;
     box-sizing: border-box;
     padding: 0 14px;
+}
+.switchCodeMsgNo{
+    text-align: left;
 }

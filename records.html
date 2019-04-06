@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/records.css">
-	
+
 </head>
 
 <body>
@@ -201,11 +201,11 @@
 						<div class="grid-stack-item-content">
 							<div class="switchingBox">
 								<div class="switchingBox_title">1#电动机</div>
-								<div class="switchCode">
+								<div id="switchDom" data-type="yes" class="switchCode  switchCodeYes">
 									<div class="solidSwitch"></div>
-									<div class="switchCodeMsg">NO</div>
+									<div class="switchCodeMsg ">NO</div>
 								</div>
-
+								<div class="switchIcon"></div>
 							</div>
 						</div>
 					</div>
@@ -241,6 +241,7 @@
 	<script>
 		window.onload = function () {
 			new Vue({
+
 				el: '#app',
 				data: {
 					ifMaskShow: false,
@@ -280,7 +281,22 @@
 				},
 				mounted() {
 					this.onlGridstack()
-				
+					$('body #switchDom').on('click', function () {
+						var type = $(this).attr('data-type')
+						if(type === 'yes'){
+							$(this).removeClass('switchCodeYes').addClass('switchCodeNo')
+							$(this).children('.solidSwitch').removeClass('solidSwitch').addClass('solidSwitchNo')
+							$(this).children('.switchCodeMsg ').addClass('switchCodeMsgNo').text('YES')
+							$(this).attr("data-type", "no");
+						}else{
+							$(this).removeClass('switchCodeNo').addClass('switchCodeYes')
+							$(this).children('.solidSwitchNo').removeClass('solidSwitchNo').addClass('solidSwitch')
+							$(this).children('.switchCodeMsg ').removeClass('switchCodeMsgNo').text('NO')
+
+							$(this).attr("data-type", "yes");
+
+						}
+					})
 				},
 				methods: {
 					clickHideMask() {
@@ -328,13 +344,18 @@
 
 								this.add_new_widget()
 							};
-							
+
 						}
 
 					}
 				},
 			})
+
+
 		}
+	</script>
+	<script>
+
 
 	</script>
 </body>
