@@ -197,8 +197,9 @@
 				<!-- 组件遮罩 -->
 				<!-- 拖拽布局 -->
 				<div class="grid-stack" id="gridJqury">
-					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8">
-						<div class="grid-stack-item-content">
+					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8"
+						hidden>
+						<!-- <div class="grid-stack-item-content">
 							<div class="switchingBox">
 								<div class="switchingBox_title">1#电动机</div>
 								<div id="switchDom" data-type="yes" class="switchCode  switchCodeYes">
@@ -207,7 +208,7 @@
 								</div>
 								<div class="switchIcon"></div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="2" data-gs-height="8">
 						<div class="grid-stack-item-content">
@@ -240,6 +241,7 @@
 
 	<script>
 		window.onload = function () {
+			var numbersCode = 0
 			new Vue({
 
 				el: '#app',
@@ -281,22 +283,6 @@
 				},
 				mounted() {
 					this.onlGridstack()
-					$('body #switchDom').on('click', function () {
-						var type = $(this).attr('data-type')
-						if(type === 'yes'){
-							$(this).removeClass('switchCodeYes').addClass('switchCodeNo')
-							$(this).children('.solidSwitch').removeClass('solidSwitch').addClass('solidSwitchNo')
-							$(this).children('.switchCodeMsg ').addClass('switchCodeMsgNo').text('YES')
-							$(this).attr("data-type", "no");
-						}else{
-							$(this).removeClass('switchCodeNo').addClass('switchCodeYes')
-							$(this).children('.solidSwitchNo').removeClass('solidSwitchNo').addClass('solidSwitch')
-							$(this).children('.switchCodeMsg ').removeClass('switchCodeMsgNo').text('NO')
-
-							$(this).attr("data-type", "yes");
-
-						}
-					})
 				},
 				methods: {
 					clickHideMask() {
@@ -319,6 +305,9 @@
 					},
 					// 添加组件事件
 					clickPushCom(type) {
+						var that = this
+						var newNameId = 'swidch' + numbersCode++
+
 						if (type === 'switching') {
 							new function () {
 								this.items = [
@@ -338,14 +327,36 @@
 										width: 4,
 										height: 8
 									};
-									this.grid.add_widget($(`<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8">${seeting.switch}</div>`),
+									this.grid.add_widget($(`<div id="" class="grid-stack-item"  data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8">${switchId(newNameId)}</div>`),
 										node.x, node.y, node.width, node.height);
 								}.bind(this);
-
 								this.add_new_widget()
+								that.jqClickSwitch(newNameId)
+
 							};
 
 						}
+					},
+					jqClickSwitch(newNameId) {
+						console.log('dom元素')
+				
+						var bodyName = `body #${newNameId}`
+						$(bodyName).on('click',function(){
+								var type =$(this).attr('data-type')
+								console.log(type)
+
+							if (type === 'yes') {
+									$(this).removeClass('switchCodeYes').addClass('switchCodeNo')
+									$(this).children('.solidSwitch').removeClass('solidSwitch').addClass('solidSwitchNo')
+									$(this).children('.switchCodeMsg ').addClass('switchCodeMsgNo').text('YES')
+									$(this).attr("data-type", "no");
+								} else {
+									$(this).removeClass('switchCodeNo').addClass('switchCodeYes')
+									$(this).children('.solidSwitchNo').removeClass('solidSwitchNo').addClass('solidSwitch')
+									$(this).children('.switchCodeMsg ').removeClass('switchCodeMsgNo').text('NO')
+									$(this).attr("data-type", "yes");
+								}
+						})
 
 					}
 				},
@@ -353,6 +364,8 @@
 
 
 		}
+
+
 	</script>
 	<script>
 
