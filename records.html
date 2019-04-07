@@ -185,7 +185,7 @@
 					<div class="layui-row layui-row-mask-bottom layui-col-space10">
 						<div class="laberl">图表组件</div>
 						<div class="layui-col-md3 records_mask_item" v-for="(item,index) of chartData">
-							<div class="records_mask_item_box">
+							<div class="records_mask_item_box" @click="clickChart(item.type,index)">
 								<div class="records_mask_item_box_l">
 									{{item.name}}
 								</div>
@@ -197,24 +197,80 @@
 				<!-- 组件遮罩 -->
 				<!-- 拖拽布局 -->
 				<div class="grid-stack" id="gridJqury">
-					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8"
-						hidden>
-						<!-- <div class="grid-stack-item-content">
-							<div class="switchingBox">
+					<!-- 开关模板 -->
+					<div class="grid-stack-item" data-gs-x="3" data-gs-y="0" data-gs-width="4" data-gs-height="8" hidden>
+						<div class="grid-stack-item-content">
+							<div class="switchingBox clearfix">
 								<div class="switchingBox_title">1#电动机</div>
 								<div id="switchDom" data-type="yes" class="switchCode  switchCodeYes">
 									<div class="solidSwitch"></div>
 									<div class="switchCodeMsg ">NO</div>
 								</div>
 								<div class="switchIcon"></div>
+								<div class="switchIconSetting">
+									<!-- 设置 -->
+									<div class="switchIconSetting_tab">
+										<div class="switchIconSetting_tab_item" id="edit">编辑属性</div>
+										<div class="switchIconSetting_tab_item" id="copy">复制</div>
+										<div class="switchIconSetting_tab_item" id="suoding">锁定</div>
+										<div class="switchIconSetting_tab_item" id="delete">删除</div>
+									</div>
+									<!-- 设置 -->
+								</div>
 							</div>
-						</div> -->
-					</div>
-					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="2" data-gs-height="8">
-						<div class="grid-stack-item-content">
-							<div id="container"></div>
 						</div>
 					</div>
+					<!-- 开关模板 -->
+					<!-- 温度传感器 -->
+					<!-- <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8" >
+						<div class="grid-stack-item-content">
+							<div class="switchingBox">
+								<div class="switchingBox_title">温度传感器</div>
+								<div class="wenduchuangan">58.6°C</div>
+								<div class="switchIcon"></div>
+								<div class="switchIconSetting"></div>
+							</div>
+						</div>
+					</div> -->
+					<!-- 温度传感器 -->
+
+
+					<!-- 复合型 -->
+					<!-- <div class="grid-stack-item" data-gs-x="3" data-gs-y="0" data-gs-width="4" data-gs-height="13" hidden>
+						<div class="grid-stack-item-content">
+							<div class="recombination">
+								<div class="recombination_t">
+									<div class="recombination_t_Msg">
+										<p>220 V</p>
+										<p>220 V</p>
+										<p>220 V</p>
+									</div>
+									<div class="switchIcon recombinationIcon"></div>
+									<div class="switchIconMsg">最后更新：12:01 30s</div>
+									<div class="switchIconSetting"></div>
+								</div>
+								<div class="recombination_b">
+									三相电压表
+								</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- 复合型 -->
+
+					<!-- 图表类折线图 -->
+					<!-- <div class="grid-stack-item" data-gs-x="3" data-gs-y="0" data-gs-width="7" data-gs-height="22" >
+						<div class="grid-stack-item-content">
+							<div class="lineChartBox">
+								<div class="lineChartBox_title">
+									1#机组温度监控
+								</div>
+								<div id="container" style="min-width:400px;height:400px"></div>
+							</div>
+							
+						</div>
+					</div>  -->
+					<!-- 图表类折线图 -->
+
 				</div>
 				<!-- 拖拽布局 -->
 
@@ -229,148 +285,19 @@
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- 拖拽类组件 -->
 	<script src="http://libs.baidu.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="bower_components/lodash/dist/lodash.min.js"></script>
 	<script src="bower_components/gridstack/dist/gridstack.js"></script>
 	<script src="bower_components/gridstack/dist/gridstack.jQueryUI.min.js"></script>
+	<!-- 拖拽类组件 -->
 	<script src="js/highcharts.js"></script>
 	<script src="layui.js"></script>
 	<script src="js/index.js"></script>
 	<script src="js/confgiSetting.js"></script>
-
-	<script>
-		window.onload = function () {
-			var numbersCode = 0
-			new Vue({
-
-				el: '#app',
-				data: {
-					ifMaskShow: false,
-					// 基本组件
-					elementData: [{
-						name: "开关型",
-						type: "switching"
-					}, {
-						name: "数值型",
-						type: "number"
-					}, {
-						name: "复合型",
-						type: "recombination"
-					}],
-					// 图表组件
-					chartData: [{
-						name: "折线图",
-					}, {
-						name: "柱状图",
-					}, {
-						name: "饼状图",
-					}, {
-						name: "伏压表",
-					}, {
-						name: "半圆仪表",
-					}, {
-						name: "时钟",
-					}, {
-						name: "子弹图",
-					},
-					{
-						name: "表格",
-					}]
-				},
-				created: function () {
-					console.log('a is: ' + this.a)
-				},
-				mounted() {
-					this.onlGridstack()
-				},
-				methods: {
-					clickHideMask() {
-						this.ifMaskShow = false
-					},
-					clickShowMask() {
-						this.ifMaskShow = true
-					},
-					// 拖拽
-					onlGridstack() {
-						var options = {
-							cellHeight: 10,
-							verticalMargin: 10,
-							float: true,
-							always_show_resize_handle: false,
-							disableResize: false
-						};
-						console.log('1')
-						$('.grid-stack').gridstack(options);
-					},
-					// 添加组件事件
-					clickPushCom(type) {
-						var that = this
-						var newNameId = 'swidch' + numbersCode++
-
-						if (type === 'switching') {
-							new function () {
-								this.items = [
-									{ x: 0, y: 0, width: 2, height: 2 },
-									{ x: 3, y: 1, width: 1, height: 2 },
-									{ x: 4, y: 1, width: 1, height: 1 },
-									{ x: 2, y: 3, width: 3, height: 1 },
-									{ x: 2, y: 5, width: 1, height: 1 }
-								];
-
-								this.grid = $('.grid-stack').data('gridstack');
-
-								this.add_new_widget = function () {
-									var node = {
-										x: 12 * Math.random(),
-										y: 5 * Math.random(),
-										width: 4,
-										height: 8
-									};
-									this.grid.add_widget($(`<div id="" class="grid-stack-item"  data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="8">${switchId(newNameId)}</div>`),
-										node.x, node.y, node.width, node.height);
-								}.bind(this);
-								this.add_new_widget()
-								that.jqClickSwitch(newNameId)
-
-							};
-
-						}
-					},
-					jqClickSwitch(newNameId) {
-						console.log('dom元素')
-				
-						var bodyName = `body #${newNameId}`
-						$(bodyName).on('click',function(){
-								var type =$(this).attr('data-type')
-								console.log(type)
-
-							if (type === 'yes') {
-									$(this).removeClass('switchCodeYes').addClass('switchCodeNo')
-									$(this).children('.solidSwitch').removeClass('solidSwitch').addClass('solidSwitchNo')
-									$(this).children('.switchCodeMsg ').addClass('switchCodeMsgNo').text('YES')
-									$(this).attr("data-type", "no");
-								} else {
-									$(this).removeClass('switchCodeNo').addClass('switchCodeYes')
-									$(this).children('.solidSwitchNo').removeClass('solidSwitchNo').addClass('solidSwitch')
-									$(this).children('.switchCodeMsg ').removeClass('switchCodeMsgNo').text('NO')
-									$(this).attr("data-type", "yes");
-								}
-						})
-
-					}
-				},
-			})
-
-
-		}
-
-
-	</script>
-	<script>
-
-
-	</script>
+	<script src="js/records/onlVue.js"></script>
+	
 </body>
 
 </html>
