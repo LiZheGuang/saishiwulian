@@ -393,6 +393,7 @@ flex-wrap: wrap;
     box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
+    color: white;
 }
 .lineChartBox_set{
     cursor: pointer;

@@ -163,13 +163,14 @@ new Vue({
             var newNumber = numbersCode++
             var newlineChartId = 'newlinechart' + newNumber
             var newSolidgaugeId = 'solidgauge' + newNumber
+            var jqColorClass
             if (type === 'lineChart') {
                 var show = this.chartData[index].show
                 if (!show) {
                     $('#dragulaDom').append(HighchartsContainerSplineHtml(newlineChartId))
                     var chart_spline = HighchartsContainerSpline(newlineChartId)
 
-
+                    jqColorClass = newlineChartId
                     this.jqClicksolidgaugeSeting(newlineChartId, { chart: chart_spline })
                     this.chartData[index].show = true
                 } else {
@@ -182,6 +183,8 @@ new Vue({
                 var show = this.chartData[index].show
                 if (!show) {
                     $('#dragulaDom').append(HighchartsContainerSolidgaugeHtml(newSolidgaugeId))
+                    jqColorClass = newSolidgaugeId
+
                     HighchartsContainerSolidgauge()
                     this.jqClicksolidgaugeSeting(newSolidgaugeId)
 
@@ -201,8 +204,14 @@ new Vue({
                 colorpicker.render({
                     elem: '#switchIconSetting_options_body_color_elementId'
                     , color: '#c71585'
-                    , predefine: true // 开启预定义颜色
+                    , predefine: true// 开启预定义颜色
+                    ,done: function(color){
+                        console.log(color)
+
+                        $(`#${jqColorClass} .lineChartBox_title`).css({"backgroundColor":color})
+                      }
                 });
+               
             });
             layui.use('form', function () {
                 var form = layui.form;
