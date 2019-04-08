@@ -3,7 +3,7 @@
  * msg:switchIconSetting_optionsDom 开关选项
  * msg:temperature_optionsDom 温度传感器选项
  */
-    console.log(Highcharts)
+console.log(Highcharts)
 
 var templateCode = {
     switchIconSetting_optionsCodeColor: function () {
@@ -230,6 +230,21 @@ function HighchartsContainerSplineHtml(keyId) {
     `
 }
 
+//压力图html
+function HighchartsContainerSolidgaugeHtml(keyId) {
+    return `
+   <div class="dragulaDomClass clearfix yalitu " id="${keyId}">
+        <div class="yatiLuBox clearfix">
+            <div class="lineChartBox_title layui-bg-green">
+                <div>管道压力</div>
+                <div class="lineChartBox_set">设置</div>
+                ${seeting.switchIconSetting_tab}
+            </div>
+            <div id="container-speed" style="width: 284px; height: 200px;"></div>
+        </div>
+    </div>
+    `
+}
 function HighchartsContainerSpline() {
     console.log('执行了')
     var chart = Highcharts.chart('container', {
@@ -274,58 +289,10 @@ function HighchartsContainerSpline() {
 
 
 function HighchartsContainerSolidgauge() {
-    console.log(Highcharts)
-    // 公共配置
-    // Highcharts.setOptions('container-speed',{
-    //     chart: {
-    //         type: 'solidgauge'
-    //     },
-    //     title: null,
-    //     pane: {
-    //         center: ['50%', '85%'],
-    //         size: '140%',
-    //         startAngle: -90,
-    //         endAngle: 90,
-    //         background: {
-    //             backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-    //             innerRadius: '60%',
-    //             outerRadius: '100%',
-    //             shape: 'arc'
-    //         }
-    //     },
-    //     tooltip: {
-    //         enabled: false
-    //     },
-    //     yAxis: {
-    //         stops: [
-    //             [0.1, '#55BF3B'], // green
-    //             [0.5, '#DDDF0D'], // yellow
-    //             [0.9, '#DF5353'] // red
-    //         ],
-    //         lineWidth: 0,
-    //         minorTickInterval: null,
-    //         tickPixelInterval: 400,
-    //         tickWidth: 0,
-    //         title: {
-    //             y: -70
-    //         },
-    //         labels: {
-    //             y: 16
-    //         }
-    //     },
-    //     plotOptions: {
-    //         solidgauge: {
-    //             dataLabels: {
-    //                 y: 5,
-    //                 borderWidth: 0,
-    //                 useHTML: true
-    //             }
-    //         }
-    //     }
-    // });
     // 速度仪表
+    console.log('速度仪表')
     var chart1 = Highcharts.chart('container-speed', {
-               chart: {
+        chart: {
             type: 'solidgauge'
         },
         title: null,
@@ -359,6 +326,11 @@ function HighchartsContainerSolidgauge() {
             },
             labels: {
                 y: 16
+            },
+            min: 0,
+            max: 200,
+            title: {
+                // text: '速度'
             }
         },
         plotOptions: {
@@ -370,26 +342,16 @@ function HighchartsContainerSolidgauge() {
                 }
             }
         },
-        yAxis: {
-            min: 0,
-            max: 200,
-            title: {
-                text: '速度'
-            }
-        },
-        credits: {
-            enabled: false
-        },
         series: [{
             name: '速度',
             data: [80],
             dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                    '<span style="font-size:12px;color:silver">km/h</span></div>'
+                format: '<div style="text-align:center"><span style="font-size:35px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || '#2dce89') + '">{y}</span><br/>' +
+                    '<span style="font-size:12px;color:silver">KPA</span></div>'
             },
             tooltip: {
-                valueSuffix: ' km/h'
+                valueSuffix: 'KPA'
             }
         }]
     });

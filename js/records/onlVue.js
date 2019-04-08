@@ -30,6 +30,8 @@ new Vue({
             name: "饼状图",
         }, {
             name: "伏压表",
+            type:"solidgauge",
+            show:false,
         }, {
             name: "半圆仪表",
         }, {
@@ -48,7 +50,7 @@ new Vue({
         this.onlGridstack()
         // 公共配置
         console.log(Highcharts)
-        HighchartsContainerSolidgauge()
+        // HighchartsContainerSolidgauge()
     },
     methods: {
         clickHideMask() {
@@ -130,12 +132,9 @@ new Vue({
             console.log(type)
             if (type === 'lineChart') {
                 var show = this.chartData[index].show
-                console.log(show)
                 if (!show) {
                     $('#dragulaDom').append(HighchartsContainerSplineHtml(''))
                     HighchartsContainerSpline()
-
-
                     this.chartData[index].show = true
                 } else {
                     layer.open({
@@ -143,7 +142,18 @@ new Vue({
                         , content: '你已经创建过折线图'
                     });
                 }
-
+            }else if(type ==='solidgauge'){
+                var show = this.chartData[index].show
+                if (!show) {
+                    $('#dragulaDom').append(HighchartsContainerSolidgaugeHtml(''))
+                    HighchartsContainerSolidgauge()
+                    this.chartData[index].show = true
+                } else {
+                    layer.open({
+                        title: '已经创建'
+                        , content: '你已经创建过折线图'
+                    });
+                }
             }
         },
         jqClickSwitch(newNameId) {
