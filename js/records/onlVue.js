@@ -1,5 +1,3 @@
-// window.onload = function(){
-
 
 
 var numbersCode = 0
@@ -48,8 +46,9 @@ new Vue({
     },
     mounted() {
         this.onlGridstack()
-       
-          
+        // 公共配置
+        console.log(Highcharts)
+        HighchartsContainerSolidgauge()
     },
     methods: {
         clickHideMask() {
@@ -94,24 +93,12 @@ new Vue({
         // 添加组件事件
         clickPushCom(type) {
             var that = this
-            let newNumber =  numbersCode++
-            var newNameId = 'swidch' +newNumber
-            var newNumberId = 'number'+newNumber
+            let newNumber = numbersCode++
+            var newNameId = 'swidch' + newNumber
+            var newNumberId = 'number' + newNumber
             if (type === 'switching') {
                 $('#dragulaDom').append(switchId(newNameId))
-                layui.use('colorpicker', function(){
-                    var colorpicker = layui.colorpicker;
-                    //渲染
-                    colorpicker.render({
-                        elem: '#switchIconSetting_options_body_color_elementId'
-                        ,color: '#c71585'
-                        ,predefine: true // 开启预定义颜色
-                      });
-                  }); 
-                layui.use('form',function(){
-                    var form = layui.form;
-                    form.render()
-                });
+
 
                 that.jqClickSwitch(newNameId)
 
@@ -123,6 +110,20 @@ new Vue({
                 $('#dragulaDom').append(recombination())
 
             }
+
+            layui.use('colorpicker', function () {
+                var colorpicker = layui.colorpicker;
+                //渲染
+                colorpicker.render({
+                    elem: '#switchIconSetting_options_body_color_elementId'
+                    , color: '#c71585'
+                    , predefine: true // 开启预定义颜色
+                });
+            });
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render()
+            });
         },
         // 图表类增加
         clickChart(type, index) {
@@ -131,7 +132,7 @@ new Vue({
                 var show = this.chartData[index].show
                 console.log(show)
                 if (!show) {
-                    $('#dragulaDom').append(HighchartsContainerSplineHtml())
+                    $('#dragulaDom').append(HighchartsContainerSplineHtml(''))
                     HighchartsContainerSpline()
 
 
@@ -177,15 +178,15 @@ new Vue({
 
             // 编辑设置
 
-            $(`body #${newNameId}  #edit`).on('click',function(event){
+            $(`body #${newNameId}  #edit`).on('click', function (event) {
                 event.stopPropagation()
 
                 $(`body #${newNameId}  #switchIconSetting_optionsDom`).show()
             })
-            $(`body #${newNameId}  #switchIconSetting_optionsDom`).on('click',function(event){
+            $(`body #${newNameId}  #switchIconSetting_optionsDom`).on('click', function (event) {
                 event.stopPropagation()
             })
-            $(`body #${newNameId}  .switchIconSetting_options_nav_cler`).on('click',function(){
+            $(`body #${newNameId}  .switchIconSetting_options_nav_cler`).on('click', function () {
                 $(`body #${newNameId}  #switchIconSetting_optionsDom`).hide()
 
             })
