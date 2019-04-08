@@ -30,8 +30,8 @@ new Vue({
             name: "饼状图",
         }, {
             name: "伏压表",
-            type:"solidgauge",
-            show:false,
+            type: "solidgauge",
+            show: false,
         }, {
             name: "半圆仪表",
         }, {
@@ -49,36 +49,38 @@ new Vue({
     mounted() {
         this.onlGridstack()
         // 公共配置
-        $('.form-control-chosen').chosen({
-            allow_single_deselect: true,
-            width: '100%'
-          });
-          $('.form-control-chosen-required').chosen({
-            allow_single_deselect: false,
-            width: '100%'
-          });
-          $('.form-control-chosen-search-threshold-100').chosen({
-            allow_single_deselect: true,
-            disable_search_threshold: 100,
-            width: '100%'
-          });
-          $('.form-control-chosen-optgroup').chosen({
-            width: '100%'
-          });
-      
-          $(function() {
-            $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
-          });
-          $(document).on('click', '[title="clickable_optgroup"] .group-result', function() {
-            var unselected = $(this).nextUntil('.group-result').not('.result-selected');
-            if(unselected.length) {
-              unselected.trigger('mouseup');
-            } else {
-              $(this).nextUntil('.group-result').each(function() {
-                $('a.search-choice-close[data-option-array-index="' + $(this).data('option-array-index') + '"]').trigger('click');
-              });
-            }
-          });
+        // $('.form-control-chosen').chosen({
+        //     allow_single_deselect: true,
+        //     width: '100%'
+        // }).change(function(e,p){
+        //     if(p.deselected){
+        //         console.log('删除')
+        //     }else{
+        //         console.log('加入')
+        //     }
+        // });;
+        //   $('.form-control-chosen-required').chosen({
+        //     allow_single_deselect: false,
+        //     width: '100%'
+        //   });
+        //   $('.form-control-chosen-search-threshold-100').chosen({
+        //     allow_single_deselect: true,
+        //     disable_search_threshold: 100,
+        //     width: '100%'
+        //   });
+        //   $('.form-control-chosen-optgroup').chosen({
+        //     width: '100%'
+        //   });
+
+        // $(function () {
+        //     $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
+        // });
+
+
+        //select选中
+        // $('.form-control-chosen').on('change', function (e, params) {
+        //         // console.log(params)
+        // });
     },
     methods: {
         clickHideMask() {
@@ -159,12 +161,16 @@ new Vue({
         // 图表类增加
         clickChart(type, index) {
             var newNumber = numbersCode++
+            var newlineChartId = 'newlinechart' + newNumber
             var newSolidgaugeId = 'solidgauge' + newNumber
             if (type === 'lineChart') {
                 var show = this.chartData[index].show
                 if (!show) {
-                    $('#dragulaDom').append(HighchartsContainerSplineHtml(''))
-                    HighchartsContainerSpline()
+                    $('#dragulaDom').append(HighchartsContainerSplineHtml(newlineChartId))
+                    var chart_spline = HighchartsContainerSpline(newlineChartId)
+
+
+                    this.jqClicksolidgaugeSeting(newlineChartId, { chart: chart_spline })
                     this.chartData[index].show = true
                 } else {
                     layer.open({
@@ -172,7 +178,7 @@ new Vue({
                         , content: '你已经创建过折线图'
                     });
                 }
-            }else if(type ==='solidgauge'){
+            } else if (type === 'solidgauge') {
                 var show = this.chartData[index].show
                 if (!show) {
                     $('#dragulaDom').append(HighchartsContainerSolidgaugeHtml(newSolidgaugeId))
@@ -187,6 +193,21 @@ new Vue({
                     });
                 }
             }
+
+
+            layui.use('colorpicker', function () {
+                var colorpicker = layui.colorpicker;
+                //渲染
+                colorpicker.render({
+                    elem: '#switchIconSetting_options_body_color_elementId'
+                    , color: '#c71585'
+                    , predefine: true // 开启预定义颜色
+                });
+            });
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render()
+            });
         },
         jqClickSwitch(newNameId) {
             var bodyName = `body #${newNameId} #swidchJs`
@@ -222,7 +243,6 @@ new Vue({
 
             $(`body #${newNameId}  #edit`).on('click', function (event) {
                 event.stopPropagation()
-
                 $(`body #${newNameId}  #switchIconSetting_optionsDom`).show()
             })
             $(`body #${newNameId}  #switchIconSetting_optionsDom`).on('click', function (event) {
@@ -234,18 +254,64 @@ new Vue({
             })
         },
         // 压力图setting方法
-        jqClicksolidgaugeSeting(newNameId){
-               // 打开设置
-               var settingDom = `body #${newNameId} .lineChartBox_set`
-               $(settingDom).on('click', function () {
-                   if (settingDomType) {
-                       $(this).siblings('.switchIconSetting_tab').show()
-                       settingDomType = false
-                   } else {
-                       $(this).siblings('.switchIconSetting_tab').hide()
-                       settingDomType = true
-                   }
-               })
+        jqClicksolidgaugeSeting(newNameId, options) {
+            console.log(options)
+            // 打开设置
+            var settingDom = `body #${newNameId} .lineChartBox_set`
+            $(settingDom).on('click', function () {
+                if (settingDomType) {
+                    $(this).siblings('.switchIconSetting_tab').show()
+                    settingDomType = false
+                } else {
+                    $(this).siblings('.switchIconSetting_tab').hide()
+                    settingDomType = true
+                }
+            })
+
+            $(`body #${newNameId}  #edit`).on('click', function (event) {
+                event.stopPropagation()
+                $(`body #${newNameId}  #switchIconSetting_optionsDom`).show()
+            })
+
+
+            $(`body #${newNameId}  .switchIconSetting_options_nav_cler`).on('click', function (event) {
+                event.stopPropagation()
+                $(`body #${newNameId}  #switchIconSetting_optionsDom`).hide()
+            })
+            $('.form-control-chosen').chosen({
+                allow_single_deselect: true,
+                width: '100%'
+            }).change(function (e, p) {
+                console.log(p)
+                if (p.deselected) {
+                    console.log('删除')
+                } else {
+                    console.log('加入')
+
+                    var arr = [];
+                    for (var i = 0; i < 12; i++) {
+                        var arrNum = parseInt(Math.random() * 30) + 1;
+                        var flag = true;
+                        for (var j = 0; j <= arr.length; j++) {
+                            if (arrNum == arr[j]) {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag) {
+                            arr.push(arrNum);
+                        } else {
+                            i--;
+                        }
+                    }
+                    options.chart.addSeries({
+                        name: p.selected,
+                        data: arr
+                    });
+                }
+            });;
+
+            // $(`body #${newNameId} #switchIconSetting_optionsDom`).show()
         }
         //把PUSH到拖拽的方法封装
         // newthisAddGrig(options){

@@ -405,3 +405,10 @@ flex-wrap: wrap;
 .yatiLuBox{
     width: 284px;
 }
+.jqOptgroupDom .layui-unselect {
+    display: none;
+}
+.lineChartBox_set_options{
+    right: -300px;
+    top: 26px;
+}

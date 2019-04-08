@@ -52,6 +52,11 @@ var templateCode = {
     `
 }
 
+var templateHighchartsContainerSolidgaugeCode = {
+
+}
+
+
 var seeting = {
 
     switchIconSetting_tab: ` 
@@ -220,6 +225,42 @@ function HighchartsContainerSplineHtml(keyId) {
             <div>机组温度监控</div>
             <div class="lineChartBox_set">设置</div>
             ${seeting.switchIconSetting_tab}
+            <!-- tab点击后的现实 -->
+            <div class="switchIconSetting_options lineChartBox_set_options" id="switchIconSetting_optionsDom"  style="display:none">
+                <div class="switchIconSetting_options_nav">
+                    <!-- 组件选项开关模块 -->
+                    <div>组件选项(折线图)</div>
+                    <div class="switchIconSetting_options_nav_cler">关闭</div>
+                </div>
+                <div class="switchIconSetting_options_body">
+                    <div class="switchIconSetting_options_body_color layui-form">
+                        ${templateCode.switchIconSetting_optionsCodeColor()}
+                        ${templateCode.switchIconSetting_optionsTitle('1#电动机')}
+                        <p>数据类型</p>
+                        <div class="layui-form-item">
+                            <input type="radio" name="sex" value="历史数据" title="历史数据" checked="">
+                            <input type="radio" name="sex" value="实时数据" title="实时数据">
+                        </div>
+                        <p>数据绑定</p>
+                        <div class="jqOptgroupDom">
+                            <select id="optgroup" class="form-control form-control-chosen" data-placeholder="选择添加的数据点." multiple>
+                              <optgroup label="温控仪表">
+                                <option>水温</option>
+                                <option>模温</option>
+                                <option>油温</option>
+                                <option>冷却塔温度</option>
+                              </optgroup>
+                              <optgroup label="电压表">
+                                <option>A相电压</option>
+                                <option>B相电压</option>
+                              </optgroup>
+                            </select>
+                          </div>
+                    </div>
+                    <!-- 显示选项 -->
+                </div>
+            </div>
+            <!-- tab点击后的现实 -->
         </div>
         <div id="container" style="min-width:400px;height:400px"></div>
     </div>
@@ -236,6 +277,42 @@ function HighchartsContainerSolidgaugeHtml(keyId) {
                 <div>管道压力</div>
                 <div class="lineChartBox_set">设置</div>
                 ${seeting.switchIconSetting_tab}
+                <!-- tab点击后的现实 -->
+                <div class="switchIconSetting_options lineChartBox_set_options" id="switchIconSetting_optionsDom"  style="display:none">
+                    <div class="switchIconSetting_options_nav">
+                        <!-- 组件选项开关模块 -->
+                        <div>组件选项(折线图)</div>
+                        <div class="switchIconSetting_options_nav_cler">关闭</div>
+                    </div>
+                    <div class="switchIconSetting_options_body">
+                        <div class="switchIconSetting_options_body_color layui-form">
+                            ${templateCode.switchIconSetting_optionsCodeColor()}
+                            ${templateCode.switchIconSetting_optionsTitle('1#电动机')}
+                            <p>数据类型</p>
+                            <div class="layui-form-item">
+                                <input type="radio" name="sex" value="历史数据" title="历史数据" checked="">
+                                <input type="radio" name="sex" value="实时数据" title="实时数据">
+                            </div>
+                            <p>数据绑定</p>
+                            <div class="jqOptgroupDom">
+                                <select id="optgroup" class="form-control form-control-chosen" data-placeholder="选择添加的数据点." multiple>
+                                  <optgroup label="温控仪表">
+                                    <option>水温</option>
+                                    <option>模温</option>
+                                    <option>油温</option>
+                                    <option>冷却塔温度</option>
+                                  </optgroup>
+                                  <optgroup label="电压表">
+                                    <option>A相电压</option>
+                                    <option>B相电压</option>
+                                  </optgroup>
+                                </select>
+                              </div>
+                        </div>
+                        <!-- 显示选项 -->
+                    </div>
+                </div>
+                <!-- tab点击后的现实 -->
             </div>
             <div id="container-speed" style="width: 284px; height: 200px;"></div>
         </div>
@@ -252,7 +329,7 @@ function HighchartsContainerSpline() {
             text: '机组温度监控'
         },
         subtitle: {
-            text: '数据来源: WorldClimate.com'
+            // text: '数据来源: WorldClimate.com'
         },
         xAxis: {
             categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
@@ -261,6 +338,9 @@ function HighchartsContainerSpline() {
             title: {
                 text: '气温 (°C)'
             }
+        },
+        legend:{
+            align:"right"
         },
         plotOptions: {
             line: {
@@ -272,6 +352,9 @@ function HighchartsContainerSpline() {
                 enableMouseTracking: false
             }
         },
+        credits: {  
+            enabled: false     //不显示LOGO 
+        },
         series: [{
             name: '水温',
             data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
@@ -280,6 +363,10 @@ function HighchartsContainerSpline() {
             data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
         }]
     });
+
+    return chart
+    // // the button handler
+
 
 
 }

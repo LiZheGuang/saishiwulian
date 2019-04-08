@@ -165,7 +165,9 @@
 						<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
 						<li class="layui-nav-item" @click="clickShowMask"><a href="javascript:;">添加组件</a></li>
 						<li class="layui-nav-item"><a href="javascript:;">保存</a></li>
-						<li class="layui-nav-item"><a href="javascript:;">设为首页</a></li>
+						<li class="layui-nav-item" id="button"> <a href="javascript:;">设为首页</a></li>
+
+
 					</ul>
 				</div>
 
@@ -239,24 +241,24 @@
 							<div id="container-speed" style="width: 284px; height: 200px;"></div>
 						</div>
 					</div> -->
-
-					<div class="switchIconSetting_options" id="switchIconSetting_optionsDom"  style="display:block">
+					
+					<div class="switchIconSetting_options" id="switchIconSetting_optionsDom"  style="display:none">
 						<div class="switchIconSetting_options_nav">
 							<!-- 组件选项开关模块 -->
-							<div>组件选项开关模块</div>
+							<div>组件选项(折线图)</div>
 							<div class="switchIconSetting_options_nav_cler">关闭</div>
 						</div>
 						<div class="switchIconSetting_options_body">
 							<div class="switchIconSetting_options_body_color layui-form">
 
-								<p>颜色</p>
+								<!-- <p>颜色</p>
 								<div id="switchIconSetting_options_body_color_elementId" class="layui-inline">
 									<div class="layui-unselect layui-colorpicker"><span><span
 												class="layui-colorpicker-trigger-span" lay-type=""
 												style="background: #c71585"><i
 													class="layui-icon layui-colorpicker-trigger-i layui-icon-down"></i></span></span>
 									</div>
-								</div>
+								</div> -->
 
 
 								<p>标题</p>
@@ -271,20 +273,17 @@
 									<input type="radio" name="sex" value="实时数据" title="实时数据">
 								</div>
 								<p>数据绑定</p>
-								<div class="col-xs-12 col-md-4 mb-5">
-									<label>Optgroup:</label>
-									<select id="optgroup" class="form-control form-control-chosen" data-placeholder="Please select..." multiple>
-									  <optgroup label="Label A">
-										<option>Option One</option>
-										<option>Option Two</option>
-										<option>Option Three</option>
-										<option>Option Four</option>
+								<div class="jqOptgroupDom">
+									<select id="optgroup" class="form-control form-control-chosen" data-placeholder="选择添加的数据点." multiple>
+									  <optgroup label="温控仪表">
+										<option>水温</option>
+										<option>模温</option>
+										<option>油温</option>
+										<option>冷却塔温度</option>
 									  </optgroup>
-									  <optgroup label="Label B">
-										<option>Option Five</option>
-										<option>Option Six</option>
-										<option>Option Seven</option>
-										<option>Option Eight</option>
+									  <optgroup label="电压表">
+										<option>A相电压</option>
+										<option>B相电压</option>
 									  </optgroup>
 									</select>
 								  </div>
