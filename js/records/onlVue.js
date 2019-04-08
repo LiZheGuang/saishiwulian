@@ -49,8 +49,36 @@ new Vue({
     mounted() {
         this.onlGridstack()
         // 公共配置
-        console.log(Highcharts)
-        // HighchartsContainerSolidgauge()
+        $('.form-control-chosen').chosen({
+            allow_single_deselect: true,
+            width: '100%'
+          });
+          $('.form-control-chosen-required').chosen({
+            allow_single_deselect: false,
+            width: '100%'
+          });
+          $('.form-control-chosen-search-threshold-100').chosen({
+            allow_single_deselect: true,
+            disable_search_threshold: 100,
+            width: '100%'
+          });
+          $('.form-control-chosen-optgroup').chosen({
+            width: '100%'
+          });
+      
+          $(function() {
+            $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
+          });
+          $(document).on('click', '[title="clickable_optgroup"] .group-result', function() {
+            var unselected = $(this).nextUntil('.group-result').not('.result-selected');
+            if(unselected.length) {
+              unselected.trigger('mouseup');
+            } else {
+              $(this).nextUntil('.group-result').each(function() {
+                $('a.search-choice-close[data-option-array-index="' + $(this).data('option-array-index') + '"]').trigger('click');
+              });
+            }
+          });
     },
     methods: {
         clickHideMask() {
@@ -98,6 +126,7 @@ new Vue({
             let newNumber = numbersCode++
             var newNameId = 'swidch' + newNumber
             var newNumberId = 'number' + newNumber
+
             if (type === 'switching') {
                 $('#dragulaDom').append(switchId(newNameId))
 
@@ -129,7 +158,8 @@ new Vue({
         },
         // 图表类增加
         clickChart(type, index) {
-            console.log(type)
+            var newNumber = numbersCode++
+            var newSolidgaugeId = 'solidgauge' + newNumber
             if (type === 'lineChart') {
                 var show = this.chartData[index].show
                 if (!show) {
@@ -145,8 +175,10 @@ new Vue({
             }else if(type ==='solidgauge'){
                 var show = this.chartData[index].show
                 if (!show) {
-                    $('#dragulaDom').append(HighchartsContainerSolidgaugeHtml(''))
+                    $('#dragulaDom').append(HighchartsContainerSolidgaugeHtml(newSolidgaugeId))
                     HighchartsContainerSolidgauge()
+                    this.jqClicksolidgaugeSeting(newSolidgaugeId)
+
                     this.chartData[index].show = true
                 } else {
                     layer.open({
@@ -201,6 +233,20 @@ new Vue({
 
             })
         },
+        // 压力图setting方法
+        jqClicksolidgaugeSeting(newNameId){
+               // 打开设置
+               var settingDom = `body #${newNameId} .lineChartBox_set`
+               $(settingDom).on('click', function () {
+                   if (settingDomType) {
+                       $(this).siblings('.switchIconSetting_tab').show()
+                       settingDomType = false
+                   } else {
+                       $(this).siblings('.switchIconSetting_tab').hide()
+                       settingDomType = true
+                   }
+               })
+        }
         //把PUSH到拖拽的方法封装
         // newthisAddGrig(options){
         //     return new Promise((resove,reject)=>{

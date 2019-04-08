@@ -32,12 +32,12 @@ var templateCode = {
     <div class=" layui-form-item">
         <div class="layui-input-inline">
             <select name="quiz2">
-                <option value="">请选择市</option>
-                <option value="杭州">杭州</option>
-                <option value="宁波" disabled="">宁波</option>
-                <option value="温州">温州</option>
-                <option value="温州">台州</option>
-                <option value="温州">绍兴</option>
+                <option value="">选择选项</option>
+                <option value="1">1</option>
+                <option value="2" disabled="">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
         </div>
     </div>
@@ -74,9 +74,7 @@ var seeting = {
             ${templateCode.switchIconSetting_optionsTitle('1#电动机')}
             ${templateCode.switchIconSetting_optionsBind}
             ${templateCode.switchIconSetting_optionsClassStyle}
-
         <p>图标</p>
-
         <div class="switchIconSetting_options_icon">
             <span class="iconColor">请选择数据点图标</span>
             <div class="click_switchIconSetting_options_icon_box">
@@ -98,10 +96,8 @@ var seeting = {
                         alt="选择图片">
                     <img class="click_switchIconSetting_options_icon" src="./images/icon_wd.png"
                         alt="选择图片">
-
                 </div>
                 <!-- 点击后的展示 -->
-
             </div>
         </div>
 
@@ -223,6 +219,7 @@ function HighchartsContainerSplineHtml(keyId) {
         <div class="lineChartBox_title">
             <div>机组温度监控</div>
             <div class="lineChartBox_set">设置</div>
+            ${seeting.switchIconSetting_tab}
         </div>
         <div id="container" style="min-width:400px;height:400px"></div>
     </div>
