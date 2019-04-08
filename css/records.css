@@ -247,6 +247,7 @@
     top: 0;
     width: 250px;
     display: none;
+    z-index: 5;
 }
 .switchIconSetting_options_nav{
     height: 30px;

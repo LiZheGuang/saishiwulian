@@ -94,8 +94,9 @@ new Vue({
         // 添加组件事件
         clickPushCom(type) {
             var that = this
-            var newNameId = 'swidch' + numbersCode++
-
+            let newNumber =  numbersCode++
+            var newNameId = 'swidch' +newNumber
+            var newNumberId = 'number'+newNumber
             if (type === 'switching') {
                 $('#dragulaDom').append(switchId(newNameId))
                 layui.use('colorpicker', function(){
@@ -115,8 +116,8 @@ new Vue({
                 that.jqClickSwitch(newNameId)
 
             } else if (type === 'number') {
-                $('#dragulaDom').append(temperature())
-                // that.jqClickSwitch(newNameId)
+                $('#dragulaDom').append(temperature(newNumberId))
+                that.jqClickSwitch(newNumberId)
             } else if (type === 'recombination') {
 
                 $('#dragulaDom').append(recombination())

@@ -1,5 +1,10 @@
 var seeting = {
-
+    switchIconSetting_tab :`  <div class="switchIconSetting_tab">
+    <div class="switchIconSetting_tab_item" id="edit">编辑属性</div>
+    <div class="switchIconSetting_tab_item" id="copy">复制</div>
+    <div class="switchIconSetting_tab_item" id="suoding">锁定</div>
+    <div class="switchIconSetting_tab_item" id="delete">删除</div>
+</div>`
 
 }
 
@@ -16,12 +21,7 @@ function switchId(keyID) {
                     <div class="switchIcon"></div>
                     <div class="switchIconSetting">
                         <!-- 设置 -->
-                        <div class="switchIconSetting_tab">
-                            <div class="switchIconSetting_tab_item" id="edit">编辑属性</div>
-                            <div class="switchIconSetting_tab_item" id="copy">复制</div>
-                            <div class="switchIconSetting_tab_item" id="suoding">锁定</div>
-                            <div class="switchIconSetting_tab_item" id="delete">删除</div>
-                        </div>
+                        ${seeting.switchIconSetting_tab}
                         <!-- 设置 -->
                         <div class="switchIconSetting_options" id="switchIconSetting_optionsDom" hidden>
                         <div class="switchIconSetting_options_nav">
@@ -106,21 +106,23 @@ function switchId(keyID) {
 }
 
 // 温度传感器
-function temperature() {
+function temperature(keyID) {
     return `
-    <div class="dragulaDomClass clearfix">
+    <div class="dragulaDomClass clearfix" id="${keyID}">
         <div class="switchingBox clearfix">
             <div class="switchingBox_title">温度传感器</div>
             <div class="wenduchuangan">58.6°C</div>
             <div class="switchIcon"></div>
-            <div class="switchIconSetting"></div>
+            <div class="switchIconSetting">
+                ${seeting.switchIconSetting_tab}
+            </div>
         </div>
     </div>`
 }
 
 // 复合
-function recombination() {
-    return `<div class="dragulaDomClass clearfix" >
+function recombination(keyID) {
+    return `<div class="dragulaDomClass clearfix" id="${keyID}" >
     <div class="recombination">
         <div class="recombination_t">
             <div class="recombination_t_Msg">
@@ -130,7 +132,9 @@ function recombination() {
             </div>
             <div class="switchIcon recombinationIcon"></div>
             <div class="switchIconMsg">最后更新：12:01 30s</div>
-            <div class="switchIconSetting"></div>
+            <div class="switchIconSetting">
+                ${seeting.switchIconSetting_tab}            
+            </div>
         </div>
         <div class="recombination_b">
             三相电压表
