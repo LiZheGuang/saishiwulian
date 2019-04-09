@@ -26,6 +26,8 @@ new Vue({
             show: false,
         }, {
             name: "柱状图",
+            type:"column",
+            show:false
         }, {
             name: "饼状图",
         }, {
@@ -48,39 +50,7 @@ new Vue({
     },
     mounted() {
         this.onlGridstack()
-        // 公共配置
-        // $('.form-control-chosen').chosen({
-        //     allow_single_deselect: true,
-        //     width: '100%'
-        // }).change(function(e,p){
-        //     if(p.deselected){
-        //         console.log('删除')
-        //     }else{
-        //         console.log('加入')
-        //     }
-        // });;
-        //   $('.form-control-chosen-required').chosen({
-        //     allow_single_deselect: false,
-        //     width: '100%'
-        //   });
-        //   $('.form-control-chosen-search-threshold-100').chosen({
-        //     allow_single_deselect: true,
-        //     disable_search_threshold: 100,
-        //     width: '100%'
-        //   });
-        //   $('.form-control-chosen-optgroup').chosen({
-        //     width: '100%'
-        //   });
-
-        // $(function () {
-        //     $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
-        // });
-
-
-        //select选中
-        // $('.form-control-chosen').on('change', function (e, params) {
-        //         // console.log(params)
-        // });
+        // HighchartsContainerContainer()
     },
     methods: {
         clickHideMask() {
@@ -163,16 +133,33 @@ new Vue({
             var newNumber = numbersCode++
             var newlineChartId = 'newlinechart' + newNumber
             var newSolidgaugeId = 'solidgauge' + newNumber
+            var newHighchartsContainerColumnId = 'highChartcolumn' + newNumber
             var jqColorClass
             if (type === 'lineChart') {
                 var show = this.chartData[index].show
                 if (!show) {
+                    // console.log(HighchartsContainerSplineHtml(newlineChartId))
                     $('#dragulaDom').append(HighchartsContainerSplineHtml(newlineChartId))
                     var chart_spline = HighchartsContainerSpline(newlineChartId)
 
                     jqColorClass = newlineChartId
                     this.jqClicksolidgaugeSeting(newlineChartId, { chart: chart_spline })
                     this.chartData[index].show = true
+                    layui.use('colorpicker', function () {
+                        var colorpicker = layui.colorpicker;
+                        //渲染
+                        colorpicker.render({
+                            elem: `#${newlineChartId} #switchIconSetting_options_body_color_elementId`
+                            , color: '#c71585'
+                            , predefine: true// 开启预定义颜色
+                            ,done: function(color){
+                                console.log(color)
+        
+                                $(`#${jqColorClass} .lineChartBox_title`).css({"backgroundColor":color})
+                              }
+                        });
+                       
+                    });
                 } else {
                     layer.open({
                         title: '已经创建'
@@ -189,6 +176,52 @@ new Vue({
                     this.jqClicksolidgaugeSeting(newSolidgaugeId)
 
                     this.chartData[index].show = true
+                    layui.use('colorpicker', function () {
+                        var colorpicker = layui.colorpicker;
+                        //渲染
+                        colorpicker.render({
+                            elem: `#${newSolidgaugeId} #switchIconSetting_options_body_color_elementId`
+                            , color: '#c71585'
+                            , predefine: true// 开启预定义颜色
+                            ,done: function(color){
+                                console.log(color)
+        
+                                $(`#${jqColorClass} .lineChartBox_title`).css({"backgroundColor":color})
+                              }
+                        });
+                       
+                    });
+                } else {
+                    layer.open({
+                        title: '已经创建'
+                        , content: '你已经创建过折线图'
+                    });
+                }
+            }else if(type === 'column'){
+                var show = this.chartData[index].show
+                if (!show) {
+                    $('#dragulaDom').append(HighchartsContainerColumnHtml(newHighchartsContainerColumnId))
+                    jqColorClass = newHighchartsContainerColumnId
+
+                    HighchartsContainerColumn()
+                    this.jqClicksolidgaugeSeting(newHighchartsContainerColumnId)
+
+                    this.chartData[index].show = true
+                    layui.use('colorpicker', function () {
+                        var colorpicker = layui.colorpicker;
+                        //渲染
+                        colorpicker.render({
+                            elem: `#${newHighchartsContainerColumnId} #switchIconSetting_options_body_color_elementId`
+                            , color: '#c71585'
+                            , predefine: true// 开启预定义颜色
+                            ,done: function(color){
+                                console.log(color)
+        
+                                $(`#${jqColorClass} .lineChartBox_title`).css({"backgroundColor":color})
+                              }
+                        });
+                       
+                    });
                 } else {
                     layer.open({
                         title: '已经创建'
@@ -197,22 +230,7 @@ new Vue({
                 }
             }
 
-
-            layui.use('colorpicker', function () {
-                var colorpicker = layui.colorpicker;
-                //渲染
-                colorpicker.render({
-                    elem: '#switchIconSetting_options_body_color_elementId'
-                    , color: '#c71585'
-                    , predefine: true// 开启预定义颜色
-                    ,done: function(color){
-                        console.log(color)
-
-                        $(`#${jqColorClass} .lineChartBox_title`).css({"backgroundColor":color})
-                      }
-                });
-               
-            });
+          
             layui.use('form', function () {
                 var form = layui.form;
                 form.render()

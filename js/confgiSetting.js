@@ -52,8 +52,11 @@ var templateCode = {
     `
 }
 
-var templateHighchartsContainerSolidgaugeCode = {
-
+var templateHighchartsCode = {
+    lineChartBox_title:function(){
+        return `<div>机组温度监控</div>
+        <div class="lineChartBox_set">设置</div>`
+    }
 }
 
 
@@ -222,8 +225,7 @@ function HighchartsContainerSplineHtml(keyId) {
     <div class="dragulaDomClass clearfix" id="${keyId}">
     <div class="lineChartBox clearfix">
         <div class="lineChartBox_title">
-            <div>机组温度监控</div>
-            <div class="lineChartBox_set">设置</div>
+            ${templateHighchartsCode.lineChartBox_title()}
             ${seeting.switchIconSetting_tab}
             <!-- tab点击后的现实 -->
             <div class="switchIconSetting_options lineChartBox_set_options" id="switchIconSetting_optionsDom"  style="display:none">
@@ -319,6 +321,59 @@ function HighchartsContainerSolidgaugeHtml(keyId) {
     </div>
     `
 }
+
+// 柱状图html
+function HighchartsContainerColumnHtml(keyId){
+    return `
+    <div class="dragulaDomClass clearfix" id="${keyId}">
+         <div class=" clearfix">
+             <div class="lineChartBox_title layui-bg-green">
+                 <!-- 标题与设置 -->
+                 ${templateHighchartsCode.lineChartBox_title()}
+                 <!-- 标题与设置 -->
+                 ${seeting.switchIconSetting_tab}
+                 <!-- tab点击后的现实 -->
+                 <div class="switchIconSetting_options lineChartBox_set_options" id="switchIconSetting_optionsDom"  style="display:none">
+                     <div class="switchIconSetting_options_nav">
+                         <!-- 组件选项开关模块 -->
+                         <div>组件选项(折线图)</div>
+                         <div class="switchIconSetting_options_nav_cler">关闭</div>
+                     </div>
+                     <div class="switchIconSetting_options_body">
+                         <div class="switchIconSetting_options_body_color layui-form">
+                             ${templateCode.switchIconSetting_optionsCodeColor()}
+                             ${templateCode.switchIconSetting_optionsTitle('1#电动机')}
+                             <p>数据类型</p>
+                             <div class="layui-form-item">
+                                 <input type="radio" name="sex" value="历史数据" title="历史数据" checked="">
+                                 <input type="radio" name="sex" value="实时数据" title="实时数据">
+                             </div>
+                             <p>数据绑定</p>
+                             <div class="jqOptgroupDom">
+                                 <select id="optgroup" class="form-control form-control-chosen" data-placeholder="选择添加的数据点." multiple>
+                                   <optgroup label="温控仪表">
+                                     <option>水温</option>
+                                     <option>模温</option>
+                                     <option>油温</option>
+                                     <option>冷却塔温度</option>
+                                   </optgroup>
+                                   <optgroup label="电压表">
+                                     <option>A相电压</option>
+                                     <option>B相电压</option>
+                                   </optgroup>
+                                 </select>
+                               </div>
+                         </div>
+                         <!-- 显示选项 -->
+                     </div>
+                 </div>
+                 <!-- tab点击后的现实 -->
+             </div>
+             <div id="HighchartsContainerColumn" style="min-width:600px;height:400px"></div>
+         </div>
+     </div>
+     `
+}
 function HighchartsContainerSpline() {
     console.log('执行了')
     var chart = Highcharts.chart('container', {
@@ -339,8 +394,8 @@ function HighchartsContainerSpline() {
                 text: '气温 (°C)'
             }
         },
-        legend:{
-            align:"right"
+        legend: {
+            align: "right"
         },
         plotOptions: {
             line: {
@@ -352,7 +407,7 @@ function HighchartsContainerSpline() {
                 enableMouseTracking: false
             }
         },
-        credits: {  
+        credits: {
             enabled: false     //不显示LOGO 
         },
         series: [{
@@ -371,7 +426,7 @@ function HighchartsContainerSpline() {
 
 }
 
-
+// 负压
 function HighchartsContainerSolidgauge() {
     // 速度仪表
     console.log('速度仪表')
@@ -455,4 +510,57 @@ function HighchartsContainerSolidgauge() {
 
 }
 
+// 柱状图
 
+function HighchartsContainerColumn(){
+    var chart = Highcharts.chart('HighchartsContainerColumn',{
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '月平均降雨量'
+        },
+        subtitle: {
+            text: '数据来源: WorldClimate.com'
+        },
+        xAxis: {
+            categories: [
+                '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '降雨量 (mm)'
+            }
+        },
+        tooltip: {
+            // head + 每个 point + footer 拼接成完整的 table
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: '东京',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        }, {
+            name: '纽约',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+        }, {
+            name: '伦敦',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+        }, {
+            name: '柏林',
+            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+        }]
+    });
+}
